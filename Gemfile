@@ -60,7 +60,8 @@ group :development do
   # gem "spring"
 end
 gem 'rack-cors'
-
+gem 'devise'
+gem 'devise-jwt'
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
