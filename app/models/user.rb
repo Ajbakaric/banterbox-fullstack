@@ -6,7 +6,9 @@ class User < ApplicationRecord
          :jwt_authenticatable, jwt_revocation_strategy: self
 
   include Devise::JWT::RevocationStrategies::JTIMatcher
-    has_many :sent_messages, class_name: "Message", foreign_key: "sender_id"
-    has_one_attached :avatar
-  end
+
+  has_many :sent_messages, class_name: "Message", foreign_key: "sender_id"
+  has_and_belongs_to_many :chat_rooms
+  has_one_attached :avatar
+end
   

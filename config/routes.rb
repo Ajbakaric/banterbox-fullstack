@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   mount ActionCable.server => '/cable'
   # root to: proc { [200, {}, ['BanterBox API is alive']] }
   root to: 'home#index' 
-  get "/login", to: "home#index"
+  get "/signup", to: "home#index"
 
   # API routes
   namespace :api do

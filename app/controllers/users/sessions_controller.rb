@@ -1,5 +1,6 @@
 class Users::SessionsController < Devise::SessionsController
   respond_to :json
+  skip_before_action :verify_authenticity_token, raise: false
 
   def create
     Rails.logger.debug "[🔥DEBUG] Raw params at entry: #{params.to_unsafe_h.inspect}"
