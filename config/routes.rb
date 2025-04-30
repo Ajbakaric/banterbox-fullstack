@@ -14,8 +14,8 @@ Rails.application.routes.draw do
 
   # Profile routes (custom user endpoint)
   devise_scope :user do
-    get '/profile', to: 'users/registrations#show'
-    put '/profile', to: 'users/registrations#update'
+    get '/api/v1/profile', to: 'users/registrations#show'
+    put '/api/v1/profile', to: 'users/registrations#update'
   end
 
   # ActionCable WebSocket endpoint
@@ -23,6 +23,10 @@ Rails.application.routes.draw do
   # root to: proc { [200, {}, ['BanterBox API is alive']] }
   root to: 'home#index' 
   get "/signup", to: "home#index"
+  get "/profile", to: "home#index"
+  get "/login", to: "home#index"
+  get "/chatrooms", to: "home#index"
+  get "/chat/:id", to: "home#index"
 
   # API routes
   namespace :api do

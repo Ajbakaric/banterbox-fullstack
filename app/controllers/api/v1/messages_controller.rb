@@ -1,5 +1,6 @@
 class Api::V1::MessagesController < ApplicationController
   before_action :authenticate_user!  # 🔐 Require JWT-based authentication
+  skip_before_action :verify_authenticity_token, raise: false
   include Rails.application.routes.url_helpers
 
   def index
