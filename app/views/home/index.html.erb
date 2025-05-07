@@ -11,5 +11,12 @@
   <body>
     <div id="root"><p>hello world</p></div>
     <%= javascript_include_tag 'bundle' %>
+    <script type="text/javascript">
+      window.env = {
+        <% ENV.each do |k, v| %>
+          <%= k %>: "<%= v %>",
+        <% end %>
+      }
+    </script>
   </body>
 </html>
