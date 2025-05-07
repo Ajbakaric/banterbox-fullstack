@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-const API = import.meta.env.VITE_API_URL;
+const API = import.meta.env.VITE_API_URL || window.env.VITE_API_URL;
+
 
 const Signup = ({ setUser }) => {
   const [email, setEmail] = useState('');
