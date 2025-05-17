@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const API = import.meta.env.VITE_API_URL;
+const API = window.env.VITE_API_URL || 
+            import.meta.env.VITE_API_URL; 
 
 const Profile = ({ user, setUser }) => {
   const [username, setUsername] = useState(user?.username || '');
