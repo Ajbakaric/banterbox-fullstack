@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   # Devise custom routes
   devise_for :users,
-             path: '',
+             path: '/api/v1',
              path_names: {
                sign_in: 'login',
                sign_out: 'logout',
