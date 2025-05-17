@@ -3,8 +3,8 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { createConsumer } from '@rails/actioncable';
 
-const API =  window.env.VITE_API_URL || import.meta.env.VITE_API_URL;
-const CABLE_URL = window.env.VITE_CABLE_URL || import.meta.env.VITE_CABLE_URL;
+const API = window?.env?.VITE_API_URL || import.meta.env.VITE_API_URL || "https://banterbox-backend.onrender.com/api/v1";
+const CABLE_URL = window?.env?.VITE_CABLE_URL || import.meta.env.VITE_CABLE_URL || "wss://banterbox-backend.onrender.com/cable";
 
 const consumer = createConsumer(CABLE_URL);
 

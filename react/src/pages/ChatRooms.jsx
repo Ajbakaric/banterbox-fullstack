@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-const API =  window.env.VITE_API_URL || import.meta.env.VITE_API_URL;
+const API = window?.env?.VITE_API_URL || import.meta.env.VITE_API_URL || "https://banterbox-backend.onrender.com/api/v1";
 
 const ChatRooms = ({ user }) => {
   const [chatRooms, setChatRooms] = useState([]);
