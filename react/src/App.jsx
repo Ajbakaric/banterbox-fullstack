@@ -8,7 +8,7 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Profile from './pages/Profile';
 
-const API = import.meta.env.VITE_API_URL;
+const API =  window.env.VITE_API_URL || import.meta.env.VITE_API_URL;
 
 function App() {
   const [user, setUser] = useState(null);

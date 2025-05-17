@@ -3,8 +3,8 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { createConsumer } from '@rails/actioncable';
 
-const API = import.meta.env.VITE_API_URL;
-const CABLE_URL = import.meta.env.VITE_CABLE_URL;
+const API =  window.env.VITE_API_URL || import.meta.env.VITE_API_URL;
+const CABLE_URL = window.env.VITE_CABLE_URL || import.meta.env.VITE_CABLE_URL;
 
 const consumer = createConsumer(CABLE_URL);
 
