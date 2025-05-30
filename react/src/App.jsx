@@ -8,7 +8,7 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Profile from './pages/Profile';
 
-const API = window?.env?.VITE_API_URL || import.meta.env.VITE_API_URL || "https://banterbox-backend.onrender.com/api/v1";
+const API = window?.env?.VITE_API_URL || import.meta.env.VITE_API_URL || "/api/v1";
 
 function App() {
   const [user, setUser] = useState(null);

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const API = window?.env?.VITE_API_URL || import.meta.env.VITE_API_URL || "https://banterbox-backend.onrender.com/api/v1";
+const API = window?.env?.VITE_API_URL || import.meta.env.VITE_API_URL || "/api/v1";
 
 const Profile = ({ user, setUser }) => {
   const [username, setUsername] = useState(user?.username || '');
