@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-const API = window?.env?.VITE_API_URL || import.meta.env.VITE_API_URL || "/api/v1";
-
+import { API_URL as API } from '../config/env';
 
 const Signup = ({ setUser }) => {
   const [email, setEmail] = useState('');
