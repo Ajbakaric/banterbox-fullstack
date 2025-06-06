@@ -8,7 +8,7 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Profile from './pages/Profile';
 
-import { API_URL as API } from '../config/env';
+import { API_URL as API } from './config/env';
 
 function App() {
   const [user, setUser] = useState(null);
