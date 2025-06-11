@@ -345,7 +345,7 @@ DEPENDENCIES
   dotenv-rails
   importmap-rails
   jbuilder
-  pg (>= 1.4)
+  pg
   puma (>= 5.0)
   rack-cors
   rails (~> 7.1.5, >= 7.1.5.1)
