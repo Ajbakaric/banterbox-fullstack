@@ -79,5 +79,5 @@ end
 gem 'dotenv-rails', groups: [:development, :test]
 
 group :production do
-  gem "pg", ">= 1.4"
+  gem "pg"
 end
