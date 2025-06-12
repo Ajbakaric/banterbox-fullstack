@@ -16,10 +16,11 @@ Rails.application.configure do
   config.consider_all_requests_local = false
   config.action_controller.perform_caching = true
 
-  config.cache_store = :redis_cache_store, {
-    url: ENV.fetch("REDIS_URL"),
-    namespace: "cache"
-  }
+ config.cache_store = :redis_cache_store, {
+  url: ENV.fetch("REDIS_URL", "redis://localhost:6379/1"),
+  namespace: "cache"
+}
+
 
 
   # Ensures that a master key has been made available in ENV["RAILS_MASTER_KEY"], config/master.key, or an environment
