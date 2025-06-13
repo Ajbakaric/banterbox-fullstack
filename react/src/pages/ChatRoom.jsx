@@ -3,7 +3,10 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { createConsumer } from '@rails/actioncable';
 
-import { API_URL as API } from '../config/env';
+import { 
+  API_URL as API, 
+  CABLE_URL,
+} from '../config/env';
 
 const consumer = createConsumer(CABLE_URL);
 
