@@ -13,21 +13,21 @@ class Api::V1::ChatRoomsController < ApplicationController
       render json: { errors: chat_room.errors.full_messages }, status: :unprocessable_entity
     end
   end
-  
 
   def show
-    chat_room = ChatRoom.find(params[:id])
-    render json: chat_room
+    chat_room = ChatRoom.includes(:messages).find(params[:id])
+    render json: chat_room.as_json(include: { messages: { include: :user } })
   end
+
   def destroy
     chat_room = ChatRoom.find(params[:id])
     chat_room.destroy
     head :no_content
   end
-  
+
   private
+
   def chat_room_params
     params.require(:chat_room).permit(:name)
   end
 end
-  
