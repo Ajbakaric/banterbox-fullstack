@@ -21,7 +21,8 @@ test:
   database: storage/test.sqlite3
 
 production:
-  adapter: postgresql
+  <<: *default
+  # adapter: postgresql
   encoding: unicode
   url: <%= ENV.fetch("DATABASE_URL") { "/prod_url" } %>
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>

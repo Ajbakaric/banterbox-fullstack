@@ -1,39 +1,57 @@
+/**
+ * @jest-environment jsdom
+ */
+
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import Profile from '../pages/Profile';
 import { MemoryRouter } from 'react-router-dom';
 import axios from 'axios';
 
-// ✅ Mock axios and alert
 jest.mock('axios');
 window.alert = jest.fn();
 
 describe('Profile Page', () => {
-  const mockUser = {
+  const initialUser = {
     id: 1,
     email: 'test@test.com',
     username: 'testuser',
-    avatar_url: null
+    avatar_url: null,
   };
 
   const mockSetUser = jest.fn();
 
-  beforeEach(() => {
-    jest.clearAllMocks(); // 💡 reset between tests
-    axios.put.mockResolvedValue({
-      data: {
-        user: {
-          ...mockUser,
-          username: 'updateduser',
-        },
+ beforeEach(() => {
+  jest.clearAllMocks();
+
+  axios.get.mockResolvedValue({
+    data: {
+      user: {
+        id: 1,
+        email: 'test@test.com',
+        username: 'testuser',
+        avatar_url: null,
       },
-    });
+    },
   });
+
+  axios.put.mockResolvedValue({
+    data: {
+      user: {
+        id: 1,
+        email: 'test@test.com',
+        username: 'updateduser',
+        avatar_url: null,
+      },
+    },
+  });
+});
+
 
   it('renders user info', () => {
     render(
       <MemoryRouter>
-        <Profile user={mockUser} setUser={mockSetUser} />
+        <Profile user={initialUser} setUser={mockSetUser} />
       </MemoryRouter>
     );
 
@@ -44,22 +62,24 @@ describe('Profile Page', () => {
   it('updates user profile on form submit', async () => {
     render(
       <MemoryRouter>
-        <Profile user={mockUser} setUser={mockSetUser} />
+        <Profile user={initialUser} setUser={mockSetUser} />
       </MemoryRouter>
     );
 
-    // Update username field
-    fireEvent.change(screen.getByPlaceholderText(/username/i), {
+    const usernameInput = screen.getByPlaceholderText(/username/i);
+    fireEvent.change(usernameInput, {
       target: { value: 'updateduser' },
     });
 
-    // Submit the form
-    fireEvent.click(screen.getByText(/update profile/i));
+    const formButton = screen.getByRole('button', { name: /update profile/i });
+    fireEvent.click(formButton);
 
     await waitFor(() =>
       expect(mockSetUser).toHaveBeenCalledWith({
-        ...mockUser,
+        id: 1,
+        email: 'test@test.com',
         username: 'updateduser',
+        avatar_url: null,
       })
     );
   });
