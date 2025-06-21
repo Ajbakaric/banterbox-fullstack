@@ -8,23 +8,10 @@ const Profile = ({ user, setUser }) => {
   const [email, setEmail] = useState(user?.email || '');
   const [avatar, setAvatar] = useState(null);
 
-  const refreshUser = async () => {
-    try {
-      const res = await axios.get(`${API}/profile`, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
-        },
-      });
-      setUser(res.data.user);
-    } catch (err) {
-      console.error('Failed to refresh user:', err);
-    }
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`${API}/profile`, {
+      const res = await axios.put(`${API}/profile`, {
         user: { username, email },
       }, {
         headers: {
@@ -33,7 +20,7 @@ const Profile = ({ user, setUser }) => {
         },
       });
 
-      await refreshUser();
+      setUser(res.data.user); // ✅ use PUT response instead of refreshUser
       alert('Profile updated!');
     } catch (err) {
       alert('Update failed.');
@@ -48,14 +35,14 @@ const Profile = ({ user, setUser }) => {
     formData.append('user[avatar]', avatar);
 
     try {
-      await axios.put(`${API}/profile`, formData, {
+      const res = await axios.put(`${API}/profile`, formData, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
           'Content-Type': 'multipart/form-data',
         },
       });
 
-      await refreshUser();
+      setUser(res.data.user); // ✅ update user from avatar response
       alert('Avatar uploaded!');
     } catch (err) {
       alert('Avatar upload failed.');
