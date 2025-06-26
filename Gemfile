@@ -72,12 +72,19 @@ group :test do
   gem "selenium-webdriver"
 end
 
+gem 'dotenv-rails', groups: [:development, :test]
+
+group :production do
+  gem "pg"
+end
+
 group :development, :test do
   gem 'rspec-rails'
 end
 
-gem 'dotenv-rails', groups: [:development, :test]
-
- group :production do
-   gem "pg"
- end
+group :test do
+  gem 'factory_bot_rails'
+  gem 'faker'
+  gem 'database_cleaner-active_record'
+  gem 'shoulda-matchers'
+end
